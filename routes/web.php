@@ -44,5 +44,9 @@ Route::get('/', function () {
 
 // Route::get('hello/{id?}/{pass?}', [HelloController::class, 'index']);
 
-Route::get('hello/', [HelloController::class, 'index']);
-Route::get('hello/other', [HelloController::class, 'other']);
+// Route::get('hello/', [HelloController::class, 'index']);
+// Route::get('hello/other', [HelloController::class, 'other']);
+
+// NOTE リスト2-14
+// NOTE シングルアクションコントローラー 第二引数は配列ではない。また、メソッド名を指定しない。__invokeメソッドが呼び出される。Laravelの機能ではなく,PHPのマジックメソッド
+Route::get('hello', HelloController::class);
