@@ -7,6 +7,33 @@ use Illuminate\Http\Response;
 
 class HelloController extends Controller
 {
+    // NOTE リスト3-13
+    // public function index()
+    // {
+    //     $data = [
+    //         'msg' => 'これはBladeを利用したサンプルです。',
+    //     ];
+    //     return view('hello.index', $data);
+    // }
+
+    // NOTE リスト3-15
+    public function index()
+    {
+        $data = [
+            'msg' => 'お名前を入力下さい。',
+        ];
+        return view('hello.index', $data);
+    }
+
+    public function post(Request $request)
+    {
+        $msg = $request->msg;
+        $data = [
+            'msg' => 'こんにちは、' . $msg . 'さん！',
+        ];
+        return view('hello.index', $data);
+    }
+
 
     // NOTE メソッドインジェクションという機能で、Request, Responseクラスのインスタンスが引数に渡される
     // NOTE web.php にパラメータを書いてない
@@ -41,9 +68,9 @@ class HelloController extends Controller
     // }
 
     // NOTE middlewareを使うことにより、$reauestが取得できる.HelloMiddleware でセットしたdataを使用できる。
-    public function index(Request $request)
-    {
-        // return view('hello.index', ['data' => $request->data]);
-        return view('hello.index');
-    }
+    // public function index(Request $request)
+    // {
+    //     // return view('hello.index', ['data' => $request->data]);
+    //     return view('hello.index');
+    // }
 }
