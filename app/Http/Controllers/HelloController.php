@@ -30,13 +30,20 @@ class HelloController extends Controller
     //   <pre>{$response}</pre>
     // </body>
     // </html>
-    // EOF;
+    // EOF;∂
     //         $response->setContent($html);
     //         return $response;
     //     }
 
-    public function index()
+    // public function index()
+    // {
+    //     return view('hello.index', ['message' => 'Hello!']);
+    // }
+
+    // NOTE middlewareを使うことにより、$reauestが取得できる.HelloMiddleware でセットしたdataを使用できる。
+    public function index(Request $request)
     {
-        return view('hello.index', ['message' => 'Hello!']);
+        // return view('hello.index', ['data' => $request->data]);
+        return view('hello.index');
     }
 }

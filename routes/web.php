@@ -52,4 +52,7 @@ Route::get('/', function () {
 // Route::get('hello', HelloController::class);
 
 // NOTE リスト2-16
-Route::get('hello', [HelloController::class, 'index']);
+// Route::get('hello', [HelloController::class, 'index']);
+
+// NOTE リスト4-3 テキストとは、Laravel のバージョンが違う、かつ呼び出し方法を登録した名前にしている
+Route::get('hello', [HelloController::class, 'index'])->middleware('hello');
