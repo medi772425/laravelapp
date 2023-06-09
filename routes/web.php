@@ -52,4 +52,11 @@ Route::get('/', function () {
 // Route::get('hello', HelloController::class);
 
 // NOTE リスト2-16
-Route::get('hello', [HelloController::class, 'index']);
+// Route::get('hello', [HelloController::class, 'index']);
+
+// NOTE リスト4-3 テキストとは、Laravel のバージョンが違う、かつ呼び出し方法を登録した名前にしている. middleware('hello');ではなく、middleware(HelloMiddleware::class) などの場合は、kernel.phpに登録しなくても良いっぽい
+// Route::get('hello', [HelloController::class, 'index'])->middleware('hello');
+// NOTE リスト4-10
+// Route::get('hello', [HelloController::class, 'index']);
+// NOTE リスト4-13
+Route::get('hello', [HelloController::class, 'index'])->middleware('hello');
