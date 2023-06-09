@@ -21,6 +21,8 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        // NOTE リスト4-10 グローバルミドルウェアの登録 ここで登録すると、自動的にミドルウェアが実行される
+        \App\Http\Middleware\HelloMiddleware::class,
     ];
 
     /**
