@@ -19,10 +19,18 @@ class HelloController extends Controller
     // NOTE リスト3-15
     public function index()
     {
+        // $data = [
+        //     'msg' => 'お名前を入力下さい。',
+        // ];
+
+        // NOTE リスト3-33
         $data = [
-            'msg' => 'お名前を入力下さい。',
+            ['name' => '山田たろう', 'mail' => 'taro@yamada'],
+            ['name' => '田中はなこ', 'mail' => 'hanako@flower'],
+            ['name' => '鈴木さちこ', 'mail' => 'sachico@happy']
         ];
-        return view('hello.index', $data);
+
+        return view('hello.index', ["data" => $data]);
     }
 
     public function post(Request $request)

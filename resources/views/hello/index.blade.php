@@ -1,26 +1,39 @@
-<!DOCTYPE html>
-<html>
+{{-- リスト3-27 --}}
+@extends('layouts.helloapp')
 
-<head>
-    <title>Hello/Index</title>
-    <style>
-        body {
-            font-size: 16pt;
-            color: #999;
-        }
+@section('title', 'Index')
 
-        h1 {
-            font-size: 50pt;
-            text-align: right;
-            color: #f6f6f6;
-            margin: -20px 0px -30px 0px;
-            letter-spacing: -4pt;
-        }
-    </style>
-</head>
-<!-- リスト3-14 -->
+@section('menubar')
+    @parent
+    インデックスページ　sectionのmenubarに追加している(liタグの中に書かれる)
+@endsection
 
-<body>
+@section('content')
+    <p>ここが本文のコンテンツです。</p>
+    <p>必要なだけ記述できます。</p>
+
+    <!-- リスト3-29 -->
+    {{-- @component('components.message')
+        @slot('msg_title')
+            CAUTION!
+        @endslot
+
+        @slot('msg_content')
+            これはメッセージの表示です。
+        @endslot
+    @endcomponent --}}
+
+    <!-- リスト3-30 -->
+    @include('components.message', ['msg_title' => 'OK', 'msg_content' => 'サブビューです。'])
+
+    <!-- リスト3-32 -->
+    <ul>
+        @each('components.item', $data, 'item')
+    </ul>
+@endsection
+
+<!-- NOTE リスト3-14 -->
+{{-- <body>
     <h1>Blade/Index</h1>
     <p>{{ $msg }}</p>
     <form method="POST" action="/hello">
@@ -28,9 +41,25 @@
         <input type="text" name="msg">
         <input type="submit">
     </form>
+</body> --}}
+
+<!-- NOTE リスト3-17 -->
+
+{{-- <body>
+    <h1>Blade/Index</h1>
+    @if ($msg != '')
+        <p>こんにちは、{{ $msg }}さん。</p>
+    @else
+        <p>何か書いて下さい。</p>
+    @endif
+    <form method="POST" action="/hello">
+        @csrf
+        <input type="text" name="msg">
+        <input type="submit">
+    </form>
 </body>
 
-</html>
+</html> --}}
 
 
 {{-- <html lang="ja">
@@ -66,3 +95,7 @@
 </body>
 
 </html> --}}
+
+@section('footer')
+    copyright 2020 tuyano.
+@endsection
