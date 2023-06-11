@@ -149,6 +149,17 @@
                 <th>mail: </th>
                 <td><input type="text" name="mail" value="{{ old('mail') }}"></td>
             </tr>
+            <!-- TODO ageのバリデーションをsometimesで追加されているか確認している -->
+            @if ($errors->any())
+                <tr>
+                    <th>age のエラー</th>
+                    <td>
+                        @foreach ($errors->get('age') as $age_message)
+                            {{ $age_message }}
+                        @endforeach
+                    </td>
+                </tr>
+            @endif
             @error('age')
                 <tr>
                     <th>ERROR</th>
