@@ -34,10 +34,20 @@ class HelloServiceProvider extends ServiceProvider
         // View::composer('hello.index', 'App\Http\Composers\HelloComposer');
 
         // TODO どうやって動いているか、よくわからない
-        // リスト4-29
-        $validator = $this->app['validator'];
-        $validator->resolver(function ($translator, $data, $rules, $messages) {
-            return new HelloValidator($translator, $data, $rules, $messages);
+        //     // リスト4-29
+        //     $validator = $this->app['validator'];
+        //     $validator->resolver(function ($translator, $data, $rules, $messages) {
+        //         return new HelloValidator($translator, $data, $rules, $messages);
+        //     });
+
+        // リスト4-32 app/Http/Validators/HelloValidator を使わない方法
+        Validator::extend('hello', function (
+            $attribute,
+            $value,
+            $parameters,
+            $validator
+        ) {
+            return $value % 2 == 0;
         });
     }
 }
