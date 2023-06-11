@@ -41,33 +41,40 @@ class HelloController extends Controller
     //     return view('hello.index', ['msg' => '正しく入力されました！']);
     // }
 
-    // リスト4-22
+    // リスト4-27
     public function post(Request $request)
     {
-        // リスト4-24 バリデータ(varidator) 独自のバリデーションの処理(リダイレクト以外の動きができる)
-        // リスト4-27
         $rules = [
             'name' => 'required',
             'mail' => 'email',
-            'age' => 'numeric|between:0,150',
+            'age' => 'numeric',
         ];
-
         $messages = [
-            'name.required' => '名前は必ず入力して下さい!!!',
+            'name.required' => '名前は必ず入力して下さい。',
             'mail.email'  => 'メールアドレスが必要です。',
-            'age.numeric' => '年齢を整数で記入下さい。',
-            'age.between' => '年齢は０～150の間で入力下さい。',
+            'age.numeric' => '年齢は整数で記入下さい。',
+            'age.min' => '年齢はゼロ歳以上で記入下さい。',
+            'age.max' => '年齢は200歳以下で記入下さい。',
         ];
 
+        // バリデータ(varidator) 独自のバリデーションの処理(リダイレクト以外の動きができる)
         $validator = Validator::make($request->all(), $rules, $messages);
 
-        if ($validator->fails()) {
-            // バリデーションチェックに失敗した場合
-            return redirect('/hello')
-                ->withErrors($validator)    // エラーメッセージも一緒にridirect
-                ->withInput();              // フォームの入力情報も一緒にridirect
-        }
+        // 条件に応じて、ルールを追加できる
+        // この場合、age が整数の場合、min,maxの条件を追加している
+        $validator->sometimes('age', 'min:0', function ($input) {
+            // falseの場合は条件を追加するので、整数の場合にfalseを返す
+            return !is_int($input->age);
+        });
+        $validator->sometimes('age', 'max:200', function ($input) {
+            return !is_int($input->age);
+        });
 
+        if ($validator->fails()) {
+            return redirect('/hello')
+                ->withErrors($validator)
+                ->withInput();
+        }
         return view('hello.index', ['msg' => '正しく入力されました！']);
     }
 }
