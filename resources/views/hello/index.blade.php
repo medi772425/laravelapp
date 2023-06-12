@@ -120,7 +120,7 @@
     </form>
 @endsection --}}
 
-<!-- リスト4-19 -->
+<!-- リスト4-37 -->
 @section('content')
     <p>{{ $msg }}</p>
     @if (count($errors) > 0)
@@ -128,52 +128,20 @@
     @endif
     <form action="/hello" method="post">
         <table>
-            {{-- @csrf --}}
-            @error('name')
+            @csrf
+            @if ($errors->has('msg'))
                 <tr>
                     <th>ERROR</th>
-                    <td>{{ $message }}</td>
-                </tr>
-            @enderror
-            <tr>
-                <th>name: </th>
-                <td><input type="text" name="name" value="{{ old('name') }}"></td>
-            </tr>
-            @error('mail')
-                <tr>
-                    <th>ERROR</th>
-                    <td>{{ $message }}</td>
-                </tr>
-            @enderror
-            <tr>
-                <th>mail: </th>
-                <td><input type="text" name="mail" value="{{ old('mail') }}"></td>
-            </tr>
-            <!-- TODO ageのバリデーションをsometimesで追加されているか確認している -->
-            @if ($errors->any())
-                <tr>
-                    <th>age のエラー</th>
-                    <td>
-                        @foreach ($errors->get('age') as $age_message)
-                            {{ $age_message }}
-                        @endforeach
-                    </td>
+                    <td>{{ $errors->first('msg') }}</td>
                 </tr>
             @endif
-            @error('age')
-                <tr>
-                    <th>ERROR</th>
-                    <td>{{ $message }}</td>
-                </tr>
-            @enderror
             <tr>
-                <th>age: </th>
-                <td><input type="text" name="age" value="{{ old('age') }}"></td>
+                <th>Message: </th>
+                <td><input type="text" name="msg" value="{{ old('msg') }}"></td>
             </tr>
             <tr>
                 <th></th>
-                <td><input type="submit" value="send">
-                </td>
+                <td><input type="submit" value="send"></td>
             </tr>
         </table>
     </form>
