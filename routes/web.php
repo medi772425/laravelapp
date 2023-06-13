@@ -52,7 +52,7 @@ Route::get('/', function () {
 // Route::get('hello', HelloController::class);
 
 // NOTE リスト2-16
-Route::get('hello', [HelloController::class, 'index']);
+Route::get('hello', [HelloController::class, 'index'])->name('hello.index');
 
 // NOTE リスト3-16
 Route::post('hello', [HelloController::class, 'post']);
@@ -63,3 +63,13 @@ Route::post('hello', [HelloController::class, 'post']);
 // Route::get('hello', [HelloController::class, 'index']);
 // NOTE リスト4-13
 // Route::get('hello', [HelloController::class, 'index'])->middleware('hello');
+
+// リスト5-10
+Route::get('hello/add', [HelloController::class, 'add']);
+Route::post('hello/add', [HelloController::class, 'create']);
+
+Route::get('hello/edit', [HelloController::class, 'edit']);
+Route::post('hello/edit', [HelloController::class, 'update']);
+
+Route::get('hello/del', [HelloController::class, 'del']);
+Route::post('hello/del', [HelloController::class, 'remove']);
