@@ -52,6 +52,19 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
+    # phpmyadminの設定追加
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin:latest
+        ports:
+            - 8080:80
+        depends_on:
+            - mysql
+        environment:
+            PMA_HOST: mysql
+            PMA_USER: '${DB_USERNAME}'
+            PMA_PASSWORD: '${DB_PASSWORD}'
+        networks:
+            - sail
     redis:
         image: 'redis:alpine'
         ports:
