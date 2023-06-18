@@ -89,3 +89,7 @@ Route::post('person/add', [PersonController::class, 'create']);
 // リスト6-24
 Route::get('person/edit', [PersonController::class, 'edit']);
 Route::post('person/edit', [PersonController::class, 'update']);
+
+// リスト6-27
+Route::get('person/del', [PersonController::class, 'delete']);
+Route::post('person/del', [PersonController::class, 'remove']);
