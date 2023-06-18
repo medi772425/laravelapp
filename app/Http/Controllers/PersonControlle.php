@@ -35,4 +35,23 @@ class PersonControlle extends Controller
 
         return view('person.find', ['input' => $request->input, 'item' => $item]);
     }
+
+    public function add(Request $request)
+    {
+        return view('person.add');
+    }
+
+    public function create(Request $request)
+    {
+        // バリデーション Personクラスの$rulesを使用する
+        $this->validate($request, Person::$rules);
+
+        $person = new Person;
+
+        $form = $request->all();
+        unset($form['_token']); // テーブルにはないフィールドなので、あらかじめ削除する
+        $person->fill($form)->save();   // fill()で、モデルのプロパティに$formを代入している
+
+        return redirect('/person');
+    }
 }

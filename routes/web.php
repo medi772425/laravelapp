@@ -81,3 +81,7 @@ Route::get('person', [PersonControlle::class, 'index']);
 // リスト6-9
 Route::get('person/find', [PersonControlle::class, 'find']);
 Route::post('person/find', [PersonControlle::class, 'search']);
+
+// リスト6-21
+Route::get('person/add', [PersonControlle::class, 'add']);
+Route::post('person/add', [PersonControlle::class, 'create']);
