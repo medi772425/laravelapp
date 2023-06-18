@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HelloController;
-use App\Http\Controllers\PersonControlle;
+use App\Http\Controllers\PersonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,12 +76,16 @@ Route::get('hello/del', [HelloController::class, 'del']);
 Route::post('hello/del', [HelloController::class, 'remove']);
 
 // リスト6-4
-Route::get('person', [PersonControlle::class, 'index']);
+Route::get('person', [PersonController::class, 'index']);
 
 // リスト6-9
-Route::get('person/find', [PersonControlle::class, 'find']);
-Route::post('person/find', [PersonControlle::class, 'search']);
+Route::get('person/find', [PersonController::class, 'find']);
+Route::post('person/find', [PersonController::class, 'search']);
 
 // リスト6-21
-Route::get('person/add', [PersonControlle::class, 'add']);
-Route::post('person/add', [PersonControlle::class, 'create']);
+Route::get('person/add', [PersonController::class, 'add']);
+Route::post('person/add', [PersonController::class, 'create']);
+
+// リスト6-24
+Route::get('person/edit', [PersonController::class, 'edit']);
+Route::post('person/edit', [PersonController::class, 'update']);

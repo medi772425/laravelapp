@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Person;
 
-class PersonControlle extends Controller
+class PersonController extends Controller
 {
     public function index()
     {
@@ -51,6 +51,28 @@ class PersonControlle extends Controller
         $form = $request->all();
         unset($form['_token']); // テーブルにはないフィールドなので、あらかじめ削除する
         $person->fill($form)->save();   // fill()で、モデルのプロパティに$formを代入している
+
+        return redirect('/person');
+    }
+
+    public function edit(Request $request)
+    {
+        $person = Person::find($request->id);
+
+        return view('person.edit', ['form' => $person]);
+    }
+
+    public function update(Request $request)
+    {
+        // $thisからvalidateメソッドを呼べるのは、コントローラークラスで、ValidatesRequestsをuseしているから
+        $this->validate($request, Person::$rules);
+
+        $person = Person::find($request->id);
+
+        $form = $request->all();
+        unset($form['_token']);
+
+        $person->fill($form)->save();
 
         return redirect('/person');
     }
