@@ -8,7 +8,7 @@
     ボード・ページ
 @endsection
 
-@section('content')
+{{-- @section('content')
     <table>
         <tr>
             <th>Data</th>
@@ -16,6 +16,22 @@
         @foreach ($items as $item)
             <tr>
                 <td>{{ $item->getData() }}</td>
+            </tr>
+        @endforeach
+    </table>
+@endsection --}}
+
+{{-- リスト6-43 --}}
+@section('content')
+    <table>
+        <tr>
+            <th>Message</th>
+            <th>Name</th>
+        </tr>
+        @foreach ($items as $item)
+            <tr>
+                <td>{{ $item->message }}</td>
+                <td>{{ $item->person->name }}</td>
             </tr>
         @endforeach
     </table>

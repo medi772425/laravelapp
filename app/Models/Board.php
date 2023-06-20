@@ -20,6 +20,11 @@ class Board extends Model
         // $userBuilder = $this->belongsTo(Person::class);
         // dd($userBuilder->toSql(), $userBuilder->getBindings());
 
+        // NOTE BoardControllerのindexで、all()しているか、withを使っているかで、ここでSQL文を発行？しているかどうかが変わる。withの場合は、何もsqlが出力されない
+        // \DB::enableQueryLog();      // sql 確認用
+        // $this->belongsTo(Person::class);
+        // dump(\DB::getQueryLog());      // sql 確認用
+
         return $this->belongsTo(Person::class);
     }
 

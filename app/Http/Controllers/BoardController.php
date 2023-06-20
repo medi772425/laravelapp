@@ -7,9 +7,21 @@ use App\Models\Board;
 
 class BoardController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $items = Board::all();
+    //     return view('board.index', ["items" => $items]);
+    // }
+
+    // リスト6-42
+    public function index(Request $request)
     {
-        $items = Board::all();
+        // \DB::enableQueryLog();      // sql 確認用
+
+        $items = Board::with('person')->get();;
+
+        // dump(\DB::getQueryLog());      // sql 確認用
+
         return view('board.index', ["items" => $items]);
     }
 
