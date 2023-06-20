@@ -7,10 +7,22 @@ use App\Models\Person;
 
 class PersonController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $items = Person::all();
+    //     return view('person.index', ["items" => $items]);
+    // }
+    // リスト6-40
+    public function index(Request $request)
     {
-        $items = Person::all();
-        return view('person.index', ["items" => $items]);
+        // $userBuilder = Person::has('boards');
+        // dd($userBuilder->toSql(), $userBuilder->getBindings());
+
+        $hasItems = Person::has('boards')->get();
+        $noItems = Person::doesntHave('boards')->get();
+        $param = ["hasItems" => $hasItems, 'noItems' => $noItems];
+
+        return view('person.index', $param);
     }
 
     public function find()
