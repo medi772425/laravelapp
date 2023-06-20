@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BoardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\PersonController;
@@ -93,3 +94,8 @@ Route::post('person/edit', [PersonController::class, 'update']);
 // リスト6-27
 Route::get('person/del', [PersonController::class, 'delete']);
 Route::post('person/del', [PersonController::class, 'remove']);
+
+// リスト6-34
+Route::get('board/index', [BoardController::class, 'index'])->name('board.index');
+Route::get('board/add', [BoardController::class, 'add']);
+Route::post('board/add', [BoardController::class, 'create']);
