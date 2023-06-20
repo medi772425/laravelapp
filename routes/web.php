@@ -96,6 +96,6 @@ Route::get('person/del', [PersonController::class, 'delete']);
 Route::post('person/del', [PersonController::class, 'remove']);
 
 // リスト6-34
-Route::get('board/index', [BoardController::class, 'index'])->name('board.index');
+Route::get('board', [BoardController::class, 'index'])->name('board.index');
 Route::get('board/add', [BoardController::class, 'add']);
 Route::post('board/add', [BoardController::class, 'create']);

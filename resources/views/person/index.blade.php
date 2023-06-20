@@ -25,7 +25,7 @@
     </table>
 @endsection --}}
 {{-- リスト6-6 --}}
-@section('content')
+{{-- @section('content')
     <table>
         <tr>
             <th>Data</th>
@@ -33,6 +33,29 @@
         @foreach ($items as $item)
             <tr>
                 <td>{{ $item->getData() }}</td>
+            </tr>
+        @endforeach
+    </table>
+@endsection --}}
+
+{{-- リスト6-36 --}}
+@section('content')
+    <table>
+        <tr>
+            <th>Person</th>
+            <th>Board</th>
+        </tr>
+        @foreach ($items as $item)
+            <tr>
+                <td>{{ $item->getData() }}</td>
+                <td>
+                    {{-- Personモデルのboardメソッドを呼び出し
+                    メソッドの場合->board() と書くはずだが、リレーションした場合は、以下のようにプロパティで扱える
+                    プロパティでないと、getData()などが呼び出せない模様 --}}
+                    @if ($item->board != null)
+                        {{ $item->board->getData() }}
+                    @endif
+                </td>
             </tr>
         @endforeach
     </table>
