@@ -25,9 +25,22 @@ class Person extends Model
         return $this->id . ': ' . $this->name . ' (' . $this->age . ')';
     }
 
-    // リレーション 1対1
-    public function board()
+
+    // // リレーション 1対1
+    // public function board()
+    // {
+    //     // Boardクラスは、Personクラスと名前空間が同じなので呼び出せる(App\Model\Board と書かなくて良い)
+    //     return $this->hasOne(Board::class);
+    // }
+
+    // リレーション 1対多(多はBoardクラスの方)
+    public function boards()
     {
-        return $this->hasOne(Board::class);
+
+        // sqlを確認する方法
+        // $userBuilder = $this->hasMany(Board::class);
+        // dd($userBuilder->toSql(), $userBuilder->getBindings());
+
+        return $this->hasMany(Board::class);
     }
 }
