@@ -19,7 +19,7 @@ use App\Http\Controllers\PersonController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+// test comment
 // NOTE 直接無名関数に渡す場合 ?をつければ任意パラメータ。なければ必須パラメータ。 引数の$msgはパラメータ名と同じでなくても良い
 // Route::get('hello/{msg?}', function ($msg = "no massage") {
 
